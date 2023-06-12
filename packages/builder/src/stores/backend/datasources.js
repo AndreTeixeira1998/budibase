@@ -1,11 +1,12 @@
 import { writable, derived, get } from "svelte/store"
 import { queries, tables } from "./"
+import { BUDIBASE_INTERNAL_DB_ID } from "constants/backend"
 import { API } from "api"
 
 export function createDatasourcesStore() {
   const store = writable({
     list: [],
-    selectedDatasourceId: null,
+    selectedDatasourceId: BUDIBASE_INTERNAL_DB_ID,
     schemaError: null,
   })
   const derivedStore = derived(store, $store => ({
@@ -79,7 +80,7 @@ export function createDatasourcesStore() {
       const sources = state.list.filter(
         existing => existing._id !== datasource._id
       )
-      return { list: sources, selected: null }
+      return { list: sources, selected: null, selectedDatasourceId: BUDIBASE_INTERNAL_DB_ID }
     })
     await queries.fetch()
     await tables.fetch()
