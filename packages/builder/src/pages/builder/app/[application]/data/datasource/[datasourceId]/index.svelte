@@ -64,11 +64,11 @@
 {:else if selectedPanel === 'queries'}
   <QueriesPanel {datasource} />
 {:else if selectedPanel === 'headers'}
-  <RestHeadersPanel {datasource} />
+  <RestHeadersPanel datasourceId={datasource._id} />
 {:else if selectedPanel === 'authentication'}
-  <RestAuthenticationPanel {datasource} />
+  <RestAuthenticationPanel datasourceId={datasource._id} />
 {:else if selectedPanel === 'variables'}
-  <RestVariablesPanel {datasource} />
+  <RestVariablesPanel datasourceId={datasource._id} />
 {:else}
   <Body>Something went wrong</Body>
 {/if}

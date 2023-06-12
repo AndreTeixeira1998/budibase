@@ -17,10 +17,16 @@
     runtimeToReadableMap,
   } from "builderStore/dataBinding"
   import { cloneDeep } from "lodash/fp"
-  import { licensing } from "stores/portal"
+  import { datasources } from "stores/backend"
+  import { findDatasource } from "stores/selectors"
 
-  export let datasource
-  export let queries
+  export let datasourceId
+  $: datasource = findDatasource($datasources, datasourceId)
+
+  $: {
+    console.log('foo')
+    console.log(datasource)
+  }
 
   let addHeader
 
